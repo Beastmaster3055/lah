@@ -5,32 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Moody Foody</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <style>
-    /* Fancy Text Animation */
-    @keyframes popGlow {
-      0% {
-        transform: scale(1);
-        text-shadow: 0 0 5px #fff, 0 0 10px #ff4d4d, 0 0 15px #ff4d4d;
-      }
-      50% {
-        transform: scale(1.05);
-        text-shadow: 0 0 15px #fff, 0 0 30px #ff4d4d, 0 0 45px #ff4d4d;
-      }
-      100% {
-        transform: scale(1);
-        text-shadow: 0 0 5px #fff, 0 0 10px #ff4d4d, 0 0 15px #ff4d4d;
-      }
-    }
-
-    .moody-text {
-      animation: popGlow 3s infinite ease-in-out;
-    }
-  </style>
 </head>
 <body>
   <div class="overlay"></div>
   <div class="header">
-    <h1 class="moody-text">Moody Foody</h1>
+    <h1 class="shimmer-text">Moody Foody</h1>
+  </div>
+
+  <form method="POST">
+    <!-- Mood -->
+    <label for="mood">Your Mood:</label>
+    <textarea id="mood" name="mood" required></textarea>
+
     <!-- Preferred Cuisine -->
     <div class="cuisine-wrapper">
       <label for="cuisine">Preferred Cuisine (Optional):</label>
@@ -120,7 +106,6 @@
     <button type="submit" class="submit-btn glow-btn">Get Food Recommendation</button>
   </form>
 
-  <!-- Display result from Python -->
   {% if result %}
   <div class="result-box">
     <h2>Your Recommendation:</h2>
