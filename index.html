@@ -7,10 +7,9 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <div class="overlay"></div>
   <div class="header">
     <h1>Moody Foody</h1>
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">🌙</button>
-  </div>
 
   <form method="POST">
     <!-- Mood -->
@@ -23,13 +22,27 @@
       <div class="custom-select" id="cuisineDropdown">
         <div class="selected-option" onclick="toggleDropdown()">Select a cuisine</div>
         <div class="options" id="options">
-          <div class="option" data-value="USA"><img src="flags/usa.png" alt="USA Flag"><span>USA</span></div>
-          <div class="option" data-value="Italy"><img src="flags/italy.png" alt="Italy Flag"><span>Italy</span></div>
-          <div class="option" data-value="Japan"><img src="flags/japan.png" alt="Japan Flag"><span>Japan</span></div>
-          <div class="option" data-value="Mexico"><img src="flags/mexico.png" alt="Mexico Flag"><span>Mexico</span></div>
-          <div class="option" data-value="India"><img src="flags/india.png" alt="India Flag"><span>India</span></div>
-          <div class="option" data-value="China"><img src="flags/china.png" alt="China Flag"><span>China</span></div>
-          <div class="option" data-value="France"><img src="flags/france.png" alt="France Flag"><span>France</span></div>
+          <div class="option" data-value="USA">
+            <img src="{{ url_for('static', filename='flags/usa.png') }}" alt="USA Flag"><span>USA</span>
+          </div>
+          <div class="option" data-value="Italy">
+            <img src="{{ url_for('static', filename='flags/italy.png') }}" alt="Italy Flag"><span>Italy</span>
+          </div>
+          <div class="option" data-value="Japan">
+            <img src="{{ url_for('static', filename='flags/japan.png') }}" alt="Japan Flag"><span>Japan</span>
+          </div>
+          <div class="option" data-value="Mexico">
+            <img src="{{ url_for('static', filename='flags/mexico.png') }}" alt="Mexico Flag"><span>Mexico</span>
+          </div>
+          <div class="option" data-value="India">
+            <img src="{{ url_for('static', filename='flags/india.png') }}" alt="India Flag"><span>India</span>
+          </div>
+          <div class="option" data-value="China">
+            <img src="{{ url_for('static', filename='flags/china.png') }}" alt="China Flag"><span>China</span>
+          </div>
+          <div class="option" data-value="France">
+            <img src="{{ url_for('static', filename='flags/france.png') }}" alt="France Flag"><span>France</span>
+          </div>
         </div>
         <input type="hidden" name="cuisine" id="selectedCuisine">
       </div>
@@ -89,7 +102,7 @@
     <input type="range" id="spiceLevel" name="spiceLevel" min="1" max="10" value="5" oninput="updateSliderValue('spiceLevel', this.value)">
     <span id="spiceLevelValue">5</span>
 
-    <button type="submit" class="submit-btn">Get Food Recommendation</button>
+    <button type="submit" class="submit-btn glow-btn">Get Food Recommendation</button>
   </form>
 
   <!-- Display result from Python -->
@@ -101,10 +114,6 @@
   {% endif %}
 
   <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-
     function toggleDropdown() {
       document.getElementById("options").classList.toggle("show");
     }
