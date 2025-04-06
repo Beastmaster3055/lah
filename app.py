@@ -1,13 +1,15 @@
 import ollama
 from flask import Flask, render_template, request
 
+
 # Initialize Flask app
 app = Flask(__name__)
+
 
 # Function to interact with Ollama API
 def get_response(statement):
     response = ollama.chat(
-        model="llama3", 
+        model="llama3",
         messages=[{
             "role": "user",
             "content": statement
@@ -18,6 +20,7 @@ def get_response(statement):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     result = None
+
 
     if request.method == 'POST':
         # Safely get form inputs
@@ -33,6 +36,7 @@ def index():
         num_people = request.form.get('numPeople', '1').strip()
         spice_level = request.form.get('spiceLevel', '5').strip()
 
+
         # Build the prompt
         statement = f"""
         This user is feeling {mood} and is looking for a meal suggestion for {meal_of_the_day}.
@@ -44,9 +48,11 @@ def index():
         This recipe should serve {num_people} people and have a cost around {cost or "N/A"}.
         They prefer a recipe type like: {recipe_type or "Any"}.
 
-        Generate a recipe that fits these needs. Include a dish name, ingredients, and simple steps. 
+
+        Generate a recipe that fits these needs. Include a dish name, ingredients, and simple steps.
         Keep it under 100 characters if possible.
         """
+
 
         try:
             response = get_response(statement)
@@ -54,7 +60,9 @@ def index():
         except Exception as e:
             result = f"An error occurred: {str(e)}"
 
+
     return render_template('index.html', result=result)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
