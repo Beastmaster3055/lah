@@ -35,11 +35,37 @@ body::before {
 h1 {
   font-family: 'Wedding', cursive;
   text-align: center;
-  color: #e53935;
   font-size: 10rem;
   font-weight: bold;
   margin: 0;
   line-height: 1;
+  color: transparent;
+  background-image: linear-gradient(120deg, #ff6f61, #f06292, #ba68c8, #9575cd);
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 4s infinite, floatBounce 3s ease-in-out infinite;
+  text-shadow: 0 0 10px #ff4d4d, 0 0 30px #ff4d4d;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes floatBounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 .header {
@@ -278,3 +304,4 @@ select.dietary-restrictions {
 .dark-mode .submit-btn:hover {
   background-color: #81c784;
 }
+
